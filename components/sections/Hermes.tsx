@@ -1,71 +1,100 @@
-import { MessageCircleIcon } from "lucide-react";
+"use client";
+
+import { motion } from "framer-motion";
+import { SectionTitle } from "../ui/section-title";
 import { Button } from "../ui/button";
+import { Bot, Zap, Shield, Sparkles } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hermes() {
+  const features = [
+    { icon: Bot, title: "IA Avanzada", description: "Procesamiento de lenguaje natural de última generación" },
+    { icon: Zap, title: "Respuestas Rápidas", description: "Interacciones instantáneas y precisas" },
+    { icon: Shield, title: "Seguridad Robusta", description: "Protección de datos y privacidad" },
+    { icon: Sparkles, title: "Personalización", description: "Se adapta a las necesidades específicas de tu negocio" },
+  ];
+
   return (
-    <section id="hermes" className="bg-gray-950 py-12 md:py-24 lg:py-32 w-full">
-      <div className="mx-auto px-4 md:px-6 max-w-7xl container">
-        <div className="gap-6 lg:gap-12 grid lg:grid-cols-[1fr_400px] xl:grid-cols-[1fr_600px]">
-          <Image
-            src="/placeholder.svg?height=400&width=600&text=Hermes Demo"
-            alt="Hermes Demo"
-            width={600}
-            height={400}
-            className="lg:order-last mx-auto rounded-xl sm:w-full overflow-hidden aspect-video object-center object-cover"
-          />
-          <div className="flex flex-col justify-center space-y-4">
-            <div className="space-y-2">
-              <h2 className="font-bold text-3xl text-white sm:text-5xl tracking-tighter">
-                Conoce a Hermes
-              </h2>
-              <p className="max-w-[600px] text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Nuestro sistema de asistentes virtuales que funcionan a través
-                de WhatsApp
-              </p>
+    <section id="hermes" className="bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950 py-24 w-full scroll-mt-20">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="mx-auto px-4 md:px-6 max-w-7xl container"
+      >
+        <SectionTitle 
+          title="Conoce a Hermes" 
+          subtitle="Nuestro asistente virtual impulsado por IA, diseñado para revolucionar la atención al cliente"
+        />
+        
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-6"
+          >
+            <h3 className="text-3xl font-bold text-white">Potencia tu Servicio al Cliente con IA</h3>
+            <p className="text-gray-300 text-lg">
+              Hermes es más que un simple chatbot. Es un asistente virtual inteligente que aprende y se adapta a tu negocio, 
+              ofreciendo una experiencia de atención al cliente excepcional las 24 horas del día, los 7 días de la semana.
+            </p>
+            <div className="grid grid-cols-2 gap-4">
+              {features.map((feature, index) => (
+                <div key={index} className="flex items-center space-x-2">
+                  <feature.icon className="w-6 h-6 text-purple-400" />
+                  <span className="text-white font-medium">{feature.title}</span>
+                </div>
+              ))}
             </div>
-            <ul className="gap-6 grid mt-8">
-              <li>
-                <div className="gap-1 grid">
-                  <h3 className="font-bold text-white text-xl">
-                    Atención 24/7
-                  </h3>
-                  <p className="text-gray-400">
-                    Hermes está siempre disponible para atender las consultas de
-                    tus clientes.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <div className="gap-1 grid">
-                  <h3 className="font-bold text-white text-xl">
-                    Personalización avanzada
-                  </h3>
-                  <p className="text-gray-400">
-                    Adapta Hermes a las necesidades específicas de tu negocio.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <div className="gap-1 grid">
-                  <h3 className="font-bold text-white text-xl">
-                    Integración sencilla
-                  </h3>
-                  <p className="text-gray-400">
-                    Fácil de implementar en tu flujo de trabajo actual.
-                  </p>
-                </div>
-              </li>
-            </ul>
-            <div className="flex min-[400px]:flex-row flex-col gap-2">
-              <Button className="inline-flex justify-center items-center bg-purple-600 hover:bg-purple-700">
-                <MessageCircleIcon className="mr-2 w-4 h-4" />
-                Prueba Hermes gratis
-              </Button>
+            <Button 
+              size="lg"
+              className="bg-purple-600 hover:bg-purple-700 text-white text-lg px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
+            >
+            <Link href="https://www.hermes-chatbot.online/" target="_blank">
+              Prueba Hermes Gratis
+            </Link>
+            </Button>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="relative w-full aspect-square"
+          >
+            <div className="absolute inset-0 w-3/4 h-3/4 mx-auto my-auto">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full opacity-20"></div>
             </div>
-          </div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Image
+                src="/images/hermes.png" 
+                alt="Hermes AI Assistant Preview" 
+                className="w-2/3 h-2/3 object-contain z-10 p-8"
+                width={400}
+                height={400}
+              />
+            </div>
+          </motion.div>
         </div>
-      </div>
+
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mx-4">
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="bg-gray-800 p-6 rounded-lg shadow-lg transform hover:-translate-y-2 transition-all duration-300"
+            >
+              <feature.icon className="w-12 h-12 text-purple-400 mb-4" />
+              <h4 className="text-xl font-semibold text-white mb-2">{feature.title}</h4>
+              <p className="text-gray-300">{feature.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
 }
